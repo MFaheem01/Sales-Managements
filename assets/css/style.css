@@ -17,8 +17,8 @@
     z-index: 1060;
     background-color: #232533;
     color: #FFFFFF;
+    width: 230px;
     transition: 0.3s ease;
-    min-height: 100vh !important;
 }
 
 #sidebar.collapsed {
@@ -62,7 +62,6 @@
 }
 
 .body-content {
-    margin-left: 230px;
     z-index: auto;
     flex: 1 !important;
 }
@@ -71,14 +70,14 @@
     margin-left: 70px;
 }
 
-/* .sidebar::-webkit-scrollbar {
-    width: 2px;
+.sidebar::-webkit-scrollbar {
+    width: 6px;
 }
 
 .sidebar::-webkit-scrollbar-thumb {
     background-color: #999;
     border-radius: 10px;
-} */
+}
 
 
 #overlay {
@@ -267,6 +266,14 @@
 
 }
 
+.mein-content{
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
 
 @media screen and (max-width: 600px) {
 
@@ -289,12 +296,12 @@
     }
 
     #sidebar {
-        transform: translateX(-100%);
-        width: 300px;
+        left: -180px;
+        width: 180px;
     }
 
     #sidebar.show {
-        transform: translateX(0);
+        left: 0 !important;
     }
 
     #sidebar #close-btn {
@@ -302,8 +309,41 @@
     }
 }
 
-/* @media screen and (min-width: 768px) {
-    .body-content {
-        margin-left: 130px;
+@media screen and (min-width: 768px) {
+
+
+    #sidebar {
+        left: -180px;
+        width: 180px;
     }
-} */
+
+    #sidebar.show {
+        left: 0 !important;
+    }
+
+    #sidebar #close-btn {
+        display: block;
+    }
+    .mein-content{
+        width: 70%;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .body-content {
+        margin-left: 230px;
+    }
+
+    #sidebar {
+        left: 0;
+        width: 230px;
+        position: fixed;
+    }
+
+    #sidebar #close-btn {
+        display: none;
+    }
+    .mein-content{
+        width: 40%;
+    }
+}
