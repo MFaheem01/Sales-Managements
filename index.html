@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Mangaement</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- chart -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="row gy-0">
+        <div class="col-lg-2 col-md-2 col-sm-12 col-12 sidebar" id="sidebar">
+          <aside>
+            <button class="border-0" id="close-btn"><i class="fa-solid fa-xmark"></i></button>
+            <nav class="navbar text-dark">
+              <div class="Logo">
+                <a href="#"><img src="assets/images/Logo-with-text.png" class="img-fluid" alt="Logo" /></a>
+              </div>
+              <ul class="navbar-nav asidebar-nav d-flex flex-column gap-3 linke navbar-expand-lg">
+                <li class="nav-item">
+                  <a class="nav-link d-inline-flex align-items-center" href="#"><i class="fa-solid fa-house-chimney"></i> <span>Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-inline-flex align-items-center" href="#"><i class="fa-solid fa-user"></i> <span>Profile</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-inline-flex align-items-center" href="#"><i class="fa-solid fa-dolly"></i> <span>Order</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-inline-flex align-items-center" href="#"><i class="fa-solid fa-bag-shopping"></i> <span>Product</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-inline-flex align-items-center" href="#"><i class="fa-solid fa-chart-line"></i> <span>Sales Report</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-inline-flex align-items-center" href="#"><i class="fa-solid fa-message"></i> <span>Message</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-inline-flex align-items-center" href="#"><i class="fa-solid fa-gear"></i> <span>Setting</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-inline-flex align-items-center" href="#"><i class="fa-solid fa-star"></i> <span>Star</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-inline-flex align-items-center" href="#"><i class="fa-solid fa-clock-rotate-left"></i> <span>Historys</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-inline-flex align-items-center" href="#"><i class="fa-solid fa-right-to-bracket"></i> <span>Login In</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link d-inline-flex align-items-center" href="#"><i class="fa-solid fa-user-plus"></i> <span>Sign In</span></a>
+                </li>
+              </ul>
+            </nav>
+          </aside>
+        </div>
+
+        <div id="overlay"></div>
+
+        <div class="col-lg-10 col-md-10 col-sm-12 col-12 body-content">
+          <header>
+            <nav class="navbar d-flex align-items-center justify-content-between nav-gap">
+              <div class="d-flex gap-3">
+                <div class="nav-btn">
+                  <button id="toggleBtn"><i class="fa-solid fa-bars-staggered"></i></button>
+                </div>
+                <form action="" role="search" method="get">
+                  <div class="input-group">
+                    <input class="form-control" id="search" name="search" type="search" placeholder="Search" aria-label="Search" />
+                    <button type="submit" class="btn btn-outline-secondary">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <ul class="d-flex list-unstyled gap-2 align-items-center m-0 p-0 flex-row">
+                <li class="nav-item">
+                  <a class="nav-link text-secondary disble-link" href="#"><i class="fa-regular fa-bell"></i></a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"> <img src="assets/images/download.png" class="img-fluid" alt="" /> </a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdowns-link" data-bs-theme="white">
+                    <li>
+                      <a class="dropdown-item" href="#"><i class="fa-solid fa-user"></i> View Profile</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#"><i class="fa-solid fa-gears"></i> Account Setting</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#"><i class="fa-solid fa-bell"></i> Notifications</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#"><i class="fa-solid fa-hat-wizard"></i> Switch Accounts</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="#"><i class="fa-solid fa-circle-info"></i> Help Center</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item text-danger" href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </header>
+
+          <!-- cards-seaction  -->
+
+          <main>
+            <section class="mt-3">
+              <div class="card shadow-sm">
+                <div class="card-body">
+                  <h4 class="card-title">Today’s Sales</h4>
+                  <p class="card-text">Sales Summary</p>
+
+                  <div class="row g-3">
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                      <div class="card h-100 text-start">
+                        <div class="card-body">
+                          <i class="fa-solid fa-barcode fs-3 text-warning mb-3"></i>
+                          <h4 class="fw-bold">$5k</h4>
+                          <p class="mb-1 text-secondary">Total Sales</p>
+                          <p class="text-warning small">+10% from yesterday</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                      <div class="card h-100 text-start">
+                        <div class="card-body">
+                          <i class="fa-solid fa-person-booth fs-3 text-info-emphasis mb-3"></i>
+                          <h4 class="fw-bold">500</h4>
+                          <p class="mb-1 text-secondary">Total Orders</p>
+                          <p class="text-info-emphasis small">+8% from yesterday</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                      <div class="card h-100 text-start">
+                        <div class="card-body">
+                          <i class="fa-solid fa-weight-hanging fs-3 text-danger mb-3"></i>
+                          <h4 class="fw-bold">9</h4>
+                          <p class="mb-1 text-secondary">Product Sold</p>
+                          <p class="text-danger small">+2% from yesterday</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-lg-3 col-md-6 col-sm-12">
+                      <div class="card h-100 text-start">
+                        <div class="card-body">
+                          <i class="fa-solid fa-user-doctor fs-3 text-primary mb-3"></i>
+                          <h4 class="fw-bold">12</h4>
+                          <p class="mb-1 text-secondary">New Customers</p>
+                          <p class="text-primary small">+3% from yesterday</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section>
+              <div class="row g-3">
+                <div class="col-lg-5 col-md-12 col-sm-12 col-12">
+                  <div class="card mt-3 d-flex flex-column p-4 overflow-hidden" style="height: 100%">
+                    <h3 class="mb-4">Level</h3>
+                    <div id="chart"></div>
+                  </div>
+                </div>
+
+                <div class="col-lg-7 col-md-12 col-sm-12 col-12">
+                  <div class="card mt-3 d-flex flex-column p-4" style="height: 100%">
+                    <h3 class="mb-4">Top Products</h3>
+                    <div class="table-responsive" style="flex-grow: 1">
+                      <table class="table align-middle mb-0 h-100 w-100">
+                        <thead class="table-light">
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Popularity</th>
+                            <th>Sales</th>
+                          </tr>
+                        </thead>
+                        <tbody class="align-middle">
+                          <tr>
+                            <th>01</th>
+                            <td>Home Decor Range</td>
+                            <td>
+                              <div class="progress" style="height: 6px">
+                                <div class="progress-bar bg-warning" style="width: 100%"></div>
+                              </div>
+                            </td>
+                            <td><span class="badge bg-warning-subtle text-warning fs-6">78%</span></td>
+                          </tr>
+                          <tr>
+                            <th>02</th>
+                            <td>Disney Princess Dress</td>
+                            <td>
+                              <div class="progress" style="height: 6px">
+                                <div class="progress-bar bg-info-subtle" style="width: 70%"></div>
+                              </div>
+                            </td>
+                            <td><span class="badge bg-info-subtle text-info fs-6">62%</span></td>
+                          </tr>
+                          <tr>
+                            <th>03</th>
+                            <td>Bathroom Essentials</td>
+                            <td>
+                              <div class="progress" style="height: 6px">
+                                <div class="progress-bar bg-info" style="width: 50%"></div>
+                              </div>
+                            </td>
+                            <td><span class="badge bg-info text-light fs-6">51%</span></td>
+                          </tr>
+                          <tr>
+                            <th>04</th>
+                            <td>Apple Smartwatch</td>
+                            <td>
+                              <div class="progress" style="height: 6px">
+                                <div class="progress-bar bg-primary" style="width: 40%"></div>
+                              </div>
+                            </td>
+                            <td><span class="badge bg-primary text-white fs-6">29%</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- charts -->
+            <section class="py-4">
+              <div class="row g-4 align-items-stretch">
+                <div class="col-lg-6 col-md-12">
+                  <div class="card h-100 p-3">
+                    <h4 class="mb-3">Customer Fulfillment</h4>
+                    <div id="chart2" class="flex-grow-1"></div>
+                  </div>
+                </div>
+
+                <div class="col-lg-6 col-md-12">
+                  <div class="card h-100 p-3">
+                    <h4 class="mb-3">Visitor Insights</h4>
+                    <div id="chart3" class="flex-grow-1"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- last-card -->
+            <section>
+              <div class="row gy-3">
+                <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+                  <div class="card">
+                    <div class="card-body d-flex flex-column gap-2">
+                      <h3 class="card-title">Earnings</h3>
+                      <h6 class="card-subtitle mb-2 text-body-secondary">Total Expense</h6>
+                      <h1>$6078.76</h1>
+                      <p class="card-text mt-3">Profit is 48% More than last Month</p>
+                      <div class="gauge-wrap">
+                        <svg class="gauge-svg" viewBox="0 0 200 110" preserveAspectRatio="xMidYMid meet">
+                          <path d="M10 100 A90 90 0 0 1 190 100" fill="none" stroke="#22252b" stroke-width="14" stroke-linecap="round" />
+                          <path d="M10 100 A90 90 0 0 1 190 100" fill="none" stroke="#000" stroke-width="14" class="overlay-arc" stroke-linecap="round" transform="rotate(16 100 100)" />
+                          <path id="progress" d="M10 100 A90 90 0 0 1 190 100" fill="none" stroke="#9fe6df" stroke-width="14" class="arc" stroke-linecap="round" />
+                        </svg>
+
+                        <div class="gauge-inner">
+                          <div class="gauge-percent">80%</div>
+                          <div class="gauge-sub">Completion</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+                  <div class="card d-flex flex-column gap-2">
+                    <div class="d-flex justify-content-between align-items-center mb-1 p-3">
+                      <h4 class="fw-bold">Trending Now</h4>
+                      <!-- Carousel Controls -->
+                      <div>
+                        <button class="btn btn-outline-light text-dark btn-sm me-2" data-bs-target="#trendingCarousel" data-bs-slide="prev">&lt;</button>
+                        <button class="btn btn-outline-light btn-sm text-dark" data-bs-target="#trendingCarousel" data-bs-slide="next">&gt;</button>
+                      </div>
+                    </div>
+
+                    <div id="trendingCarousel" class="carousel slide" data-bs-ride="false" data-bs-interval="false" data-bs-wrap="false">
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <div class="row g-4">
+                            <div class="col-md-12 col-sm-12 col-lg-6 col-12">
+                              <div class="card">
+                                <div class="card-img-top">
+                                  <img src="https://themewagon.github.io/nickelfox/assets/home-decor-range-CcM1ybHr.jpg" alt="Disney Princess Dress" />
+                                </div>
+                                <div class="card-body">
+                                  <h5 class="card-title">Disney Princess Dress</h5>
+                                  <div class="d-flex justify-content-between">
+                                    <p class="mb-1">Popularity</p>
+                                    <span>62%</span>
+                                  </div>
+                                  <div class="popularity-bar mb-2">
+                                    <div class="popularity-fill" style="width: 62%"></div>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <div class="initials"><span>D</span><span>H</span><span>N</span></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-12 col-lg-6 col-sm-12 col-12">
+                              <div class="card position-relative">
+                                <div class="card-img-top">
+                                  <img src="https://themewagon.github.io/nickelfox/assets/bathroom-essentials-cvlkOIR7.jpg" alt="Bathroom Essentials" />
+                                </div>
+                                <div class="card-body">
+                                  <h5 class="card-title">Bathroom Essentials</h5>
+                                  <div class="d-flex justify-content-between">
+                                    <p class="mb-1">Popularity</p>
+                                    <span>51%</span>
+                                  </div>
+                                  <div class="popularity-bar mb-2">
+                                    <div class="popularity-fill" style="width: 51%"></div>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <div class="initials">
+                                      <span>W</span>
+                                      <span>A</span>
+                                      <span class="initials-parts">M</span>
+                                      <span>+4</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="carousel-item">
+                          <div class="row g-4">
+                            <div class="col-md-12 col-lg-6 col-sm-12 col-12">
+                              <div class="card">
+                                <div class="card-img-top">
+                                  <img src="https://themewagon.github.io/nickelfox/assets/home-decor-range-CcM1ybHr.jpg" alt="Kitchen Essentials" />
+                                </div>
+                                <div class="card-body">
+                                  <h5 class="card-title">Kitchen Essentials</h5>
+                                  <p class="mb-1">Popularity</p>
+                                  <div class="popularity-bar mb-2">
+                                    <div class="popularity-fill" style="width: 74%"></div>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <span>74%</span>
+                                    <div class="initials"><span>K</span><span>J</span><span>T</span></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                            <div class="col-md-6">
+                              <div class="card">
+                                <div class="card-img-top">
+                                  <img src="https://themewagon.github.io/nickelfox/assets/apple-smartwatch-BudkkcRE.jpg" alt="Smart Gadgets" />
+                                </div>
+                                <div class="card-body">
+                                  <h5 class="card-title">Smart Gadgets</h5>
+                                  <p class="mb-1">Popularity</p>
+                                  <div class="popularity-bar mb-2">
+                                    <div class="popularity-fill" style="width: 83%"></div>
+                                  </div>
+                                  <div class="d-flex justify-content-between">
+                                    <span>83%</span>
+                                    <div class="initials"><span>S</span><span>G</span><span>+2</span></div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- last-table-section -->
+            <section>
+              <div class="row">
+                <div class="col-12">
+                  <div class="card shadow-sm mt-2">
+                    <div class="card-body">
+                      <!-- Header + Search -->
+                      <div class="table-header">
+                        <h2>Customers</h2>
+                      </div>
+                      <!-- Table -->
+                      <div class="table-responsive">
+                        <table class="table table-hover" id="usersTable">
+                          <thead>
+                            <tr>
+                              <th scope="col"><input class="form-check-input" type="checkbox" /></th>
+                              <th scope="col">Name</th>
+                              <th scope="col">Email</th>
+                              <th scope="col">Phone</th>
+                              <th scope="col">Billing Address</th>
+                              <th scope="col">Total Spent</th>
+                              <th scope="col">Actions</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td><input class="form-check-input" type="checkbox" /></td>
+                              <td>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="span-class">A</span>
+                                  Alex Xavier
+                                </div>
+                              </td>
+                              <td>alex@example.com</td>
+                              <td>(555) 123-4567</td>
+                              <td>123 Elm Street, Springfield, IL</td>
+                              <td>$981.00</td>
+                              <td>
+                                <i class="fa-solid fa-pen me-2 text-primary" style="cursor: pointer"></i>
+                                <i class="fa-solid fa-trash text-danger" style="cursor: pointer"></i>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td><input class="form-check-input" type="checkbox" /></td>
+                              <td>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="span-class1">B</span>
+                                  Brian Edwards
+                                </div>
+                              </td>
+                              <td>brian@example.com</td>
+                              <td>(555) 234-5678</td>
+                              <td>456 Oak Street, Lincoln, NE</td>
+                              <td>$199.00</td>
+                              <td>
+                                <i class="fa-solid fa-pen me-2 text-primary" style="cursor: pointer"></i>
+                                <i class="fa-solid fa-trash text-danger" style="cursor: pointer"></i>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td><input class="form-check-input" type="checkbox" /></td>
+                              <td>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="span-class">G</span>
+                                  George Oliver
+                                </div>
+                              </td>
+                              <td>george@example.com</td>
+                              <td>(555) 345-6789</td>
+                              <td>789 Maple Avenue, Madison, WIL</td>
+                              <td>$609.00</td>
+                              <td>
+                                <i class="fa-solid fa-pen me-2 text-primary" style="cursor: pointer"></i>
+                                <i class="fa-solid fa-trash text-danger" style="cursor: pointer"></i>
+                              </td>
+                            </tr>
+
+                            <tr>
+                              <td><input class="form-check-input" type="checkbox" /></td>
+                              <td>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="span-class">I</span>
+                                  Isaac Neville
+                                </div>
+                              </td>
+                              <td>isaac@example.com</td>
+                              <td>(555) 345-4489</td>
+                              <td>101 Pine Road, Orlando, FL</td>
+                              <td>$623.00</td>
+                              <td>
+                                <i class="fa-solid fa-pen me-2 text-primary" style="cursor: pointer"></i>
+                                <i class="fa-solid fa-trash text-danger" style="cursor: pointer"></i>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><input class="form-check-input" type="checkbox" /></td>
+                              <td>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="span-class">I</span>
+                                  Isaac Neville
+                                </div>
+                              </td>
+                              <td>isaac@example.com</td>
+                              <td>(555) 345-4489</td>
+                              <td>101 Pine Road, Orlando, FL</td>
+                              <td>$623.00</td>
+                              <td>
+                                <i class="fa-solid fa-pen me-2 text-primary" style="cursor: pointer"></i>
+                                <i class="fa-solid fa-trash text-danger" style="cursor: pointer"></i>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><input class="form-check-input" type="checkbox" /></td>
+                              <td>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="span-class">I</span>
+                                  Isaac Neville
+                                </div>
+                              </td>
+                              <td>isaac@example.com</td>
+                              <td>(555) 345-4489</td>
+                              <td>101 Pine Road, Orlando, FL</td>
+                              <td>$623.00</td>
+                              <td>
+                                <i class="fa-solid fa-pen me-2 text-primary" style="cursor: pointer"></i>
+                                <i class="fa-solid fa-trash text-danger" style="cursor: pointer"></i>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><input class="form-check-input" type="checkbox" /></td>
+                              <td>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="span-class">I</span>
+                                  Isaac Neville
+                                </div>
+                              </td>
+                              <td>isaac@example.com</td>
+                              <td>(555) 345-4489</td>
+                              <td>101 Pine Road, Orlando, FL</td>
+                              <td>$623.00</td>
+                              <td>
+                                <i class="fa-solid fa-pen me-2 text-primary" style="cursor: pointer"></i>
+                                <i class="fa-solid fa-trash text-danger" style="cursor: pointer"></i>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><input class="form-check-input" type="checkbox" /></td>
+                              <td>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="span-class">I</span>
+                                  Isaac Neville
+                                </div>
+                              </td>
+                              <td>isaac@example.com</td>
+                              <td>(555) 345-4489</td>
+                              <td>101 Pine Road, Orlando, FL</td>
+                              <td>$623.00</td>
+                              <td>
+                                <i class="fa-solid fa-pen me-2 text-primary" style="cursor: pointer"></i>
+                                <i class="fa-solid fa-trash text-danger" style="cursor: pointer"></i>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><input class="form-check-input" type="checkbox" /></td>
+                              <td>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="span-class">I</span>
+                                  Isaac Neville
+                                </div>
+                              </td>
+                              <td>isaac@example.com</td>
+                              <td>(555) 345-4489</td>
+                              <td>101 Pine Road, Orlando, FL</td>
+                              <td>$623.00</td>
+                              <td>
+                                <i class="fa-solid fa-pen me-2 text-primary" style="cursor: pointer"></i>
+                                <i class="fa-solid fa-trash text-danger" style="cursor: pointer"></i>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td><input class="form-check-input" type="checkbox" /></td>
+                              <td>
+                                <div class="d-flex align-items-center gap-2">
+                                  <span class="span-class">I</span>
+                                  Isaac Neville
+                                </div>
+                              </td>
+                              <td>isaac@example.com</td>
+                              <td>(555) 345-4489</td>
+                              <td>101 Pine Road, Orlando, FL</td>
+                              <td>$623.00</td>
+                              <td>
+                                <i class="fa-solid fa-pen me-2 text-primary" style="cursor: pointer"></i>
+                                <i class="fa-solid fa-trash text-danger" style="cursor: pointer"></i>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        </div>
+      </div>
+    </div>
+
+    <!-- sidebar show on mobile -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.4/js/dataTables.bootstrap5.js"></script>
+    <script src="index.js"></script>
+  </body>
+
+  <script></script>
+</html>
